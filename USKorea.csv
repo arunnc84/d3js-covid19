@@ -1,0 +1,17 @@
+location,date,total_cases,total_deaths
+South Korea,12/31/19,0,0
+South Korea,1/31/20,7,0
+South Korea,2/29/20,2931,16
+South Korea,3/31/20,9786,163
+South Korea,4/30/20,10765,247
+South Korea,5/31/20,11468,270
+South Korea,6/30/20,12800,282
+South Korea,7/25/20,14092,298
+United States,12/31/19,0,0
+United States,1/31/20,6,0
+United States,2/29/20,66,0
+United States,3/31/20,164620,3170
+United States,4/30/20,1039909,60966
+United States,5/31/20,1770384,103781
+United States,6/30/20,2590552,126140
+United States,7/25/20,4112529,145546

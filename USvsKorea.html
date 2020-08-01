@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    /* set the CSS */
+
+    .line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 2px;
+    }
+
+    .myChart {
+        display: block;
+        margin: auto;
+        width: 800px;
+        height: 800px;
+    }
+
+    .axisSteelBlue text {
+        fill: steelblue;
+    }
+
+    .axisRed text {
+        fill: red;
+    }
+
+    .button {
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .currentTab {
+        background-color: #e7e7e7;
+        color: black;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .leftcolumn {
+        float: left;
+        width: 30%;
+        padding: 10px;
+        height: 300px;
+        /* Should be removed. Only for demonstration */
+    }
+
+    .rightcolumn {
+        float: left;
+        width: 70%;
+        padding: 10px;
+        height: 300px;
+        /* Should be removed. Only for demonstration */
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .Abtbutton {
+        background-color: grey;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .buttoncolumn {
+        float: left;
+        width: 70%;
+        padding: 10px;
+        height: 40px;
+        /* Should be removed. Only for demonstration */
+    }
+
+    .buttoncolumn1 {
+        float: left;
+        width: 30%;
+        padding: 10px;
+        height: 40px;
+        /* Should be removed. Only for demonstration */
+    }
+</style>
+
+<body>
+    <div style="align-items: center;" class="buttonContainer">
+        <div class="row">
+            <div class="buttoncolumn">
+                <button type="button" class="button" onclick="window.location.href='index.html'">Introduction</button>
+
+                <button type="button" class="button" onclick="window.location.href='worldTrend.html'">World
+                    Trend</button>
+                <button type="button" class="button currentTab" disabled
+                    onclick="window.location.href='USvsKorea.html'">Korea
+                    Vs United
+                    States</button>
+                <button type="button" class="button" onclick="window.location.href='AllCountries725.html'">All Countries
+                    (7/25)</button>
+            </div>
+            <div class="buttoncolumn1">
+                <a type="button" aligh=right class="Abtbutton" href="abt.html" target="_blank">About Visualization</a>
+            </div>
+        </div>
+    </div>
+    <div style="align-items: center;">
+        <h2 style="text-align: center;">Success and Failure</h2>
+        <h3 style="text-align: center;">How did South Korea succeed and the US fail?
+        </h3>
+    </div>
+    <a href="worldTrend.html">Prev</a>
+    <div class="row">
+        <div class="leftcolumn">
+            <div>
+                <h4>South Korea</h4>
+                <p>South Korea reported its first case on Jan 20 2020. From then to March the cases were seen to be
+                    raising exponentially, post march the country has controlled the spread and has resumed normal
+                    activities.</p>
+                <h4>Success</h4>
+                <p>South Korean govenrment, based on their experience with MERS virus spread in 2015, setup various
+                    agencies to test, track the source and isolate the source. When the spread beause uncontrollable the
+                    goverment enforced strict lock down rules. These measures slowed down the spread and the curve
+                    drastically flattened in the last two months. South Korea is considered as a success story by WHO.
+                </p>
+                <h4>United States</h4>
+                <p>United States reported first case of Covid-19 on Jan 21. From then to now, the cases have
+                    exponentially increased without showing any sign of flattening.</p>
+                <h4>Failure</h4>
+                <p>Based on the success stories from South Korea and China, US did implement lockdown, but was late to
+                    do so. The lockdown was implemented too late, by then reports of community spread started to emerge.
+                    Even when lockdown was announced, it was not enforced stirctly, which led to virus spread. As days
+                    past, due to
+                    economic impact, goverment slowed down loackdown and other testing activity to identify covid
+                    patients. This led United States to lead the
+                    world in both number of active cases and number of deaths.</p>
+                <h5>Next Slide</h5>
+                <p>Next slide to provide a country vise look at todays covid number. <a
+                        href="AllCountries725.html">Next</a></p>
+            </div>
+        </div>
+        <div class="rightcolumn">
+            <div id="my_chart" class="myChart"></div>
+        </div>
+    </div>
+
+    <!-- load the d3.js library -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script>
+
+        // set the dimensions and margins of the graph
+        var margin = { top: 20, right: 100, bottom: 40, left: 100 },
+            width = 960 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+        // parse the date / time
+        var parseTime = d3.timeParse("%d-%b-%y");
+
+        // set the ranges
+        var x = d3.scaleTime().range([0, width]);
+        var y0 = d3.scaleLinear().range([height, 0]);
+        var y1 = d3.scaleLinear().range([height, 0]);
+
+        // define the 1st line
+        var valueline = d3.line()
+            .x(function (d) { return x(d.Month); })
+            .y(function (d) { return y0(d.SouthKorea); });
+
+        // define the 2nd line
+        var valueline2 = d3.line()
+            .x(function (d) { return x(d.Month); })
+            .y(function (d) { return y1(d.UnitedStates); });
+
+        // append the svg obgect to the body of the page
+        // appends a 'group' element to 'svg'
+        // moves the 'group' element to the top left margin
+        var svg = d3.select("#my_chart")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+
+        // Get the data
+        d3.csv("KoreaUS.csv", function (error, data) {
+            if (error) throw error;
+
+            // format the data
+            data.forEach(function (d) {
+                d.Month = parseTime(d.Month);
+                d.SouthKorea = +d.SouthKorea;
+                d.UnitedStates = +d.UnitedStates;
+            });
+
+            // Scale the range of the data
+            x.domain(d3.extent(data, function (d) { return d.Month; }));
+            y0.domain([0, d3.max(data, function (d) { return Math.max(d.SouthKorea); })]);
+            y1.domain([0, d3.max(data, function (d) { return Math.max(d.UnitedStates); })]);
+
+            // Add the valueline path.
+            svg.append("path")
+                .data([data])
+                .attr("class", "line")
+                .attr("d", valueline);
+
+            // Add the valueline2 path.
+            svg.append("path")
+                .data([data])
+                .attr("class", "line")
+                .style("stroke", "red")
+                .attr("d", valueline2);
+
+            // Add the X Axis
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x))
+                .append("text")
+                .attr("x", 250)
+                .attr("y", 35)
+                .attr("font-family", "Gill Sans", "Gill Sans MT")
+                .attr("font-size", "16px")
+                .attr("fill", "#000")
+                .text("Month Name")
+                .style("font-weight", "bold");
+
+            // Add the Y0 Axis
+            svg.append("g")
+                .attr("class", "axisSteelBlue")
+                .call(d3.axisLeft(y0))
+                .append("text")
+                .attr("x", -300)
+                .attr("y", -60)
+                .attr("font-family", "Gill Sans", "Gill Sans MT")
+                .attr("font-size", "16px")
+                .attr("fill", "#000")
+                .text("South Korea")
+                .style("font-weight", "bold")
+                .attr("transform", "rotate(270)")
+                .style("text-anchor", "start");
+
+            // Add the Y1 Axis
+            svg.append("g")
+                .attr("class", "axisRed")
+                .attr("transform", "translate( " + width + ", 0 )")
+                .call(d3.axisRight(y1))
+                .append("text")
+                .attr("x", -300)
+                .attr("y", 70)
+                .attr("font-family", "Gill Sans", "Gill Sans MT")
+                .attr("font-size", "16px")
+                .attr("fill", "#000")
+                .text("United States")
+                .style("font-weight", "bold")
+                .attr("transform", "rotate(270)")
+                .style("text-anchor", "start");
+
+            svg.append("g")
+                .append("text")
+                .attr('x', -250)
+                .attr('y', 350)
+                .attr('id', 'KoreaRedtextD')
+                .attr('fill', 'red')
+                .classed('annotation', true)
+                .attr("font-family", "Gill Sans", "Gill Sans MT")
+                .style("font-weight", "bold")
+                .text(["South Korea - Steep increase in Feb & March"])
+                .attr("transform", "rotate(-55)")
+                .style("text-anchor", "start");
+            svg.append("g")
+                .append("text")
+                .attr('x', 350)
+                .attr('y', 200)
+                .attr('id', 'KoreagreentextD')
+                .attr('fill', 'green')
+                .classed('annotation', true)
+                .attr("font-family", "Gill Sans", "Gill Sans MT")
+                .style("font-weight", "bold")
+                .text(["Well Managed and curve flattened!"])
+                .attr("transform", "rotate(-15)")
+                .style("text-anchor", "start");
+            svg.append("g")
+                .append("text")
+                .attr('x', 100)
+                .attr('y', 500)
+                .attr('id', 'USRedtextD')
+                .attr('fill', 'red')
+                .classed('annotation', true)
+                .attr("font-family", "Gill Sans", "Gill Sans MT")
+                .style("font-weight", "bold")
+                .text(["United States - Steep increase continues"])
+                .attr("transform", "rotate(-35)")
+                .style("text-anchor", "start");
+        });
+
+    </script>
+</body>

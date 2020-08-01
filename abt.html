@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <style>
+    .button {
+      background-color: #4CAF50;
+      /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .currentTab {
+      background-color: #e7e7e7;
+      color: black;
+    }
+  </style>
+  <!--<div style="align-items: center;" class="buttonContainer">
+    <button type="button" class="button" onclick="window.location.href='index.html'">Introduction</button>
+
+    <button type="button" class="button" onclick="window.location.href='worldTrend.html'">World
+      Trend</button>
+    <button type="button" class="button" onclick="window.location.href='USvsKorea.html'">Korea
+      Vs United
+      States</button>
+    <button type="button" class="button" onclick="window.location.href='AllCountries725.html'">All Countries
+      (7/25)</button>
+    <button type="button" class="button currentTab" disabled onclick="window.location.href='abt.html'">About</button>
+  </div>-->
+  <div style="width: 1080px">
+    <h1 align="left">About the Visualization</h1>
+
+    <p>CS 498 Data Visualization - Summer 2020 - University of Illinois-Urbana Champaign</p>
+    <p>Project
+      by Arun Narayanaperumal Chellathurai</p>
+    <h2>Messaging</h2>
+    <p>To analyze covid-19 publicly available dataset and provide High level overview of covid-19 by highlighting 3 data
+      points</p>
+    <ul>
+      <li>Covid Impact across the globe over the last 6 months.</li>
+      <li> cases across the globe.</li>
+      <li>Provide as of today view of Covid cases across the globe.</li>
+    </ul>
+    <h2>Narrative Structure</h2>
+    <p>This narrative visualization follows a "Interactive Slide Show" structure. This slideshow has 4 slides in total
+      with 3 slides using charts of two different kinds.</p>
+    <h2>Visual Structure</h2>
+    <p>The interactive slide show is "Linear" and can be navigating either by using
+      the page level buttons highligted in green or by using the simple hyperlink along with the text. Users can
+      interact with the chart in scene 4 by mouseover to get more details thorugh dynamic annotations. Annotations are
+      used across all scenes to help the user focus on the messsage author is trying to convey. Every slide has a small
+      overview of what the next slide is to make the user interested in the next message author is trying to convey.</p>
+    <h2>Scenes</h2>
+    <p>The slideshow consists of 4 slides.</p>
+    <ul>
+      <li>Introduction</li>
+      <p>Introduction about covid19.</p>
+      <li>Covid Impact across the globe over the last 6 months.</li>
+      <p>To start with, this scene is used to provide a picture about how covid 19 started with a small number and
+        drastically increased over the past 6 months and also provides information about when it was anounced as
+        pandemic.</p>
+      <li>Compare data from a Country which succesfully worked around Covid and a country which did not.</li>
+      <p>This scene is to provide an overview of data from two countries on how they handled covid differenlty and the
+        result from their actions. Annotations are provided to highlight the message</p>
+      <li>Provide as of today view of Covid impact.</li>
+      <p>The last scene is to provide todays status on covid and the user can hover over countries or legend to get more
+        details about the reported and death cases.</p>
+    </ul>
+    <p> By providing a overall picture first and then bring the focus down to today would make the user understand the
+      impact well, like for example financial institutions trying to sell their service provide their overall
+      performance overview and then
+      compare their services with competitor and finally providing todays offereing. This slide follows the same
+      pattern</p>
+    <h2>Annotations</h2>
+    <p>Annotations used in this interactive slides shows are text with different colors. Red, Orange and green are used
+      to highlight the message author wants to communite to the user.</p>
+    <p>For instance, in world trend red annotation is used to highlight the timeframe when covid was announced as
+      pandemic.</p>
+    <p>The same color pattern is followed in Korea Vs United States slide to highlight the dangerous trend observed in
+      South Korea and United States. A different color green is used to highlight the possitive trend starting to emerge
+      in south korea.</p>
+    <p> Sceen All countries have dynamic annotation based on user hover over action on legend to provide more details
+      about covid cases across the continent the user has the mouse over.</p>
+    <p>Annotations are used like voice of the author to guide the user with the message the author wants to convey.</p>
+    <h2>Parameters</h2>
+    <p>The buttons provided on the webpage navigate to different webpages to change the state of the visualization and
+      their by changing their Parameters</p>
+    <p>Click on World Trend provides a chart with data from all over the globe for a period of 6 months.</p>
+    <p>click on Korea Vs united States provides us with a chart for the same time period, but with two countries in
+      focus, their by changing the paramters for the previous chart to focus on trend for these two countries.</p>
+    <p>Click on All Countries (7/25) gives us the data for all countries on a particular day.</p>
+    <p>Thus providing the user with 3 views from the same dataset filtered by either day or country or no filter driven
+      by user button clicks</p>
+    <h2>Triggers</h2>
+    <p>Buttons are the primary triggers available on top of each slide allows the user to navigate to any given slide
+      they are interested in to get more details on.</p>
+    <p> Scene "All Countries (7/25)" does have hover over triggers to provide more details (dynamic annotation to
+      display more details) about the covid cases across
+      continents or countries based on the hover type (legent hover or bubble country hover)</p>
+    <h2>Acknowledgements</h2>
+    <ul>
+      <li>Website hosted on <a href="https://pages.github.com/" target="_blank">Github Pages</a></li>
+      <li>d3 used for charts <a href="http://d3js.org" target="_blank">d3.Org</a></li>
+      <li>HTML and CSS help from <a href="https://www.w3schools.com/" target="_blank">W3School</a></li>
+      <li> Covid details from wikipedia and google search</li>
+      <li>Data dowloaded from john hopkins university <a href="https://github.com/CSSEGISandData/COVID-19"
+          target="_blank">githib</a>
+      </li>
+      <li>reference from various blogs from <a href="https://bl.ocks.org/" target="_blank">popular blocks</a></li>
+    </ul>
+  </div>
+</body>
+
+</html>
